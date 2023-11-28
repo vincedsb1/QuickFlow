@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .truncate-4-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .truncate-2-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .truncate-1-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+::selection {
+  background: rgb(16 185 129);
+  color: white;
+}
+
+input[type="date"]::selection {
+  background: rgb(16 185 129);
+  color: white;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea::-webkit-scrollbar {
+  width: 5px; /* Largeur de la barre de défilement */
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent; /* Couleur de l'arrière-plan de la barre de défilement */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(16 185 129); /* Couleur de la barre de défilement */
+  border-radius: 10px; /* Arrondissement des coins de la barre de défilement */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: rgb(
+    7,
+    150,
+    102
+  ); /* Couleur de la barre de défilement lors du survol */
+}
+
+/* Pour Firefox */
+textarea {
+  scrollbar-width: thin; /* Largeur de la barre de défilement */
+  scrollbar-color: rgb(16 185 129) transparent; /* Couleur de la barre de défilement et de l'arrière-plan de la barre de défilement */
+}
+
+/* Chrome, Firefox, and newer versions of Safari */
+input::placeholder,
+textarea::placeholder {
+  color: #cbd5e1;
+}
+
+/* Older versions of Safari */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #cbd5e1;
+}
+
+/* Internet Explorer */
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #cbd5e1;
+}
+
+/* Microsoft Edge */
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: #cbd5e1;
+}
+
+/* Firefox */
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #cbd5e1;
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-vertical-horizontal {
+  0% {
+    transform: rotate(0deg) translateX(-25%) scale(3);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(360deg) translateX(25%) scale(4);
+  }
+  75% {
+    transform: rotate(540deg);
+  }
+  100% {
+    transform: rotate(720deg) translateX(-25%) scale(3);
+  }
+}
+
+.animate-spin-vertical-horizontal {
+  animation: spin-vertical-horizontal 60s linear infinite;
+}
+
+/* Effet bounce  */
+
+@keyframes scale-up {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scale-up-animation {
+  animation: scale-up 0.2s ease-in-out;
+}
+
+.input-quickflow {
+  @apply border-solid border border-slate-300 rounded w-full h-12 px-3 text-slate-900 outline-2 outline-slate-400;
+}
+.inputError-quickflow {
+  @apply border-solid border border-red-700 rounded w-full h-12 px-3 text-slate-900 outline-2 outline-slate-400;
+}
+.checkBox_role {
+  @apply rounded-lg border border-solid h-5 valid:border-emerald-500 checked:bg-emerald-500 mb-6 hover:bg-none;
+}
+.checkBoxOff {
+  @apply required:border-gray-500 checked:border-emerald-500 invalid:border-red-500 border-solid h-5 mb-6;
+}
