@@ -25,6 +25,8 @@ function Connexion() {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/login`, { email, password })
       .then((res) => {
+        console.log("Réponse du serveur pour la connexion :", res); // Log de la réponse du serveur
+
         // on récupère le token généré en backend et on le stocke dans le localStorage
         localStorage.setItem("token", res.data.token);
         const token = localStorage.getItem("token");
@@ -33,8 +35,13 @@ function Connexion() {
         return decodedToken.sub.id;
       })
       .then((userId) => {
-        // si on a reçu une invtation, il y a un orgId dans l'url. Dans ce cas, on rejoint automatiquement l'organisation en question
+        // si on a reçu une invitation, il y a un orgId dans l'url. Dans ce cas, on rejoint automatiquement l'organisation en question
         if (orgId) {
+          console.log("Ajout de l'utilisateur à l'organisation", {
+            orgId,
+            userId,
+          }); // Log avant l'ajout de l'utilisateur
+
           // l'axios ici ajoute l'utilisateur à l'organisation dans la base de données
           axios
             .post(`${import.meta.env.VITE_BACKEND_URL}/inviteUser`, {
@@ -42,6 +49,12 @@ function Connexion() {
               userId,
             })
             .then(() => {
+              console.log("Utilisateur ajouté à l'organisation", {
+                orgId,
+                userId,
+              }); // Log après l'ajout
+
+              // Suite des requêtes pour gérer les rôles
               return Promise.all([
                 axios.post(
                   `${
@@ -63,15 +76,24 @@ function Connexion() {
                 ),
               ]);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+              console.error("Erreur lors de l'ajout à l'organisation", err); // Log en cas d'erreur
+            });
         }
         navigate("/choose_organisation");
       })
-      .catch(() => {
-        console.error("Login failed");
+      .catch((error) => {
+        console.error("Erreur de connexion :", error.response); // Log en cas d'erreur de connexion
         setPassword("");
         setError(true);
       });
+  };
+
+  // Fonction pour le mode démo
+  const handleDemoMode = () => {
+    setEmail("demo@demo.com");
+    setPassword("Antoine");
+    handleConnexion();
   };
 
   return (
@@ -136,11 +158,24 @@ function Connexion() {
           )}
           <br />
           <br />
-          <NavLink to="/forgot-password">
-            <p className="forgot-password text-emerald-600 font-texts font-bold">
-              Mot de passe oublié ?
-            </p>
-          </NavLink>
+          <div className="flex flex-row justify-between" id="forgotEmailDemo">
+            <div className="" id="forgotPassword">
+              <NavLink to="/forgot-password">
+                <p className="forgot-password text-emerald-600 font-texts font-bold">
+                  Mot de passe oublié ?
+                </p>
+              </NavLink>
+            </div>
+            <div id="demo">
+              <button
+                type="button"
+                onClick={handleDemoMode}
+                className="text-emerald-600 font-texts font-bold"
+              >
+                Demo mode
+              </button>
+            </div>
+          </div>
           <br />
           <div className="flex justify-center">
             <button
