@@ -10,7 +10,7 @@ function CtaLP() {
             Votre temps n'attend plus
           </h2>
           <p className="sm:text-2xl text-xl text-center text-slate-700">
-            Mettez de l'ordre dans votre chaos
+            Mettez de l'ordre dans votre chaos 🔥
           </p>
         </div>
         <div className="flex flex-col justify-center sm:flex-row gap-4 sm:gap-10 px-3 w-full">
