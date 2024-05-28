@@ -9,6 +9,16 @@ const express = require("express");
 
 const app = express();
 
+// Middleware pour logger les requêtes
+app.use((req, res, next) => {
+  console.log(
+    `Requête reçue : ${req.method} ${
+      req.path
+    } - Time: ${new Date().toISOString()}`
+  );
+  next(); // Passe à la prochaine fonction middleware dans la pile
+});
+
 // use some application-level middlewares
 
 app.use(express.json());

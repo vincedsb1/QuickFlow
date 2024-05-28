@@ -127,7 +127,7 @@ function Connexion() {
           </label>
           <input
             id="email"
-            className="border-solid border border-slate-300 p-2 rounded-md w-full h-10 mt-1"
+            className="border-solid border border-slate-300 p-2 rounded-md w-full h-10 mt-1 bg-"
             type="email"
             autoComplete="email"
             placeholder="exemple : dupond@mail.com"
