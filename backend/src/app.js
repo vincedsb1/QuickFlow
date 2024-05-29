@@ -29,6 +29,8 @@ const cors = require("cors");
 const allowedOrigins = [
   "http://localhost:3000", // URL de développement
   "http://localhost:80",
+  "http://localhost:8080",
+  "http://localhost:5026",
   "http://5.250.176.153:80",
   "http://5.250.176.153", // URL de production ou autre environnement
   "https://5.250.176.153", // Si vous avez également une version sécurisée
