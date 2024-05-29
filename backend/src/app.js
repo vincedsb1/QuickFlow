@@ -25,12 +25,28 @@ app.use(express.json());
 
 const cors = require("cors");
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    optionsSuccessStatus: 200,
-  })
-);
+// Définir une liste d'origines autorisées
+const allowedOrigins = [
+  "http://localhost:3000", // URL de développement
+  "http://localhost:80",
+  "http://5.250.176.153:80",
+  "http://5.250.176.153", // URL de production ou autre environnement
+  "https://5.250.176.153", // Si vous avez également une version sécurisée
+];
+
+// Configuration CORS avec fonction de filtrage dynamique des origines
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200, // Pour les navigateurs legacy
+};
+
+app.use(cors(corsOptions));
 
 // serve the `backend/public` folder for public resources
 
