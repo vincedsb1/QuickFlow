@@ -14,7 +14,7 @@ function Decision({ ideaId, refreshIdeas }) {
     const headers = { Authorization: `Bearer ${token}` };
     axios
       .put(
-        `http://localhost:5026/orga/${orgaContext}/update/${ideaId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/orga/${orgaContext}/update/${ideaId}`,
         {
           finalStatusLabel,
           statusId,

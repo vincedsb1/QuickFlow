@@ -9,7 +9,7 @@ function SmallIdea({ ideaId, titre, vote }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5026/idee/${ideaId}/comment`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/idee/${ideaId}/comment`)
       .then((response) => {
         const ideaData = response.data;
         setData(ideaData);

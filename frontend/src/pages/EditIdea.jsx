@@ -23,7 +23,7 @@ function EditIdea() {
   // je recupère les données de l'idée existante
   useEffect(() => {
     axios
-      .get(`http://localhost:5026/dashboard/update/${id}/`)
+      .get(`import.meta.env.VITE_BACKEND_URL/dashboard/update/${id}/`)
       .then((response) => {
         const ideaData = response.data;
         setData(ideaData);
@@ -35,7 +35,7 @@ function EditIdea() {
 
   // je récupère le nom de l'organisation (grâce au contexte), pour l'afficher dans le fil d'ariane
   useEffect(() => {
-    axios.get(`http://localhost:5026/orga/${orgaContext}`).then((response) => {
+    axios.get(`import.meta.env.VITE_BACKEND_URL/orga/${orgaContext}`).then((response) => {
       setOrganisationName(response.data[0].nom_organisation);
     });
   }, [orgaContext]);
@@ -136,7 +136,7 @@ function EditIdea() {
   // j'envoie les données sur la route PUT idea
   const sendForm = async (dataSendForm) => {
     const token = localStorage.getItem("token");
-    const url = `http://localhost:5026/user/${user.id}/orga/${orgaContext}/dashboard/update/${data[0].id}`;
+    const url = `import.meta.env.VITE_BACKEND_URL/user/${user.id}/orga/${orgaContext}/dashboard/update/${data[0].id}`;
 
     await axios
       .put(url, dataSendForm, {

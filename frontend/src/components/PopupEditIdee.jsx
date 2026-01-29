@@ -43,7 +43,7 @@ function PopupEditIdee({ ideaId, refreshIdeas }) {
 
   const handleClickDeleteIdea = async () => {
     const token = localStorage.getItem("token");
-    const url = `http://localhost:5026/user/${user.id}/orga/${orgaContext}/dashboard/delete/${ideaId}`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}/user/${user.id}/orga/${orgaContext}/dashboard/delete/${ideaId}`;
 
     await axios
 

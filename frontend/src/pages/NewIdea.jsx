@@ -23,7 +23,7 @@ function NewIdea() {
 
   // je récupère le nom de l'organisation (grâce au contexte), pour l'afficher dans le fil d'ariane
   useEffect(() => {
-    axios.get(`http://localhost:5026/orga/${orgaContext}`).then((response) => {
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/orga/${orgaContext}`).then((response) => {
       setOrganisationName(response.data[0].nom_organisation);
     });
   }, [orgaContext]);

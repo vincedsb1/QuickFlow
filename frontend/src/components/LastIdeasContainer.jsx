@@ -13,7 +13,7 @@ function LastIdeasContainer() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5026/user/${user.id}/orga/${orgaContext}/last/vote`
+          `${import.meta.env.VITE_BACKEND_URL}/user/${user.id}/orga/${orgaContext}/last/vote`
         );
         const lastIdeaData = response.data;
         setData(lastIdeaData);
