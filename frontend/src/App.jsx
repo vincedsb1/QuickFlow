@@ -1,6 +1,7 @@
 import "./services/index.css";
 import { useState, useMemo, useEffect } from "react";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 import Router from "./components/Navigation/Router";
 import UserContext from "./contexts/UserContext";
 import OrgaContext from "./contexts/OrgaContext";
@@ -22,7 +23,11 @@ function App() {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          setUser(jwtDecode(token).sub);
+          const decoded = jwtDecode(token);
+          const userId = decoded.sub.id;
+          axios
+            .get(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`)
+            .then((res) => setUser(res.data[0]));
         }
       } catch {
         console.error("Erreur");

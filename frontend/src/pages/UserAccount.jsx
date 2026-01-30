@@ -17,22 +17,25 @@ function UserAccount() {
   const [photo, setPhoto] = useState(user && user.photoProfil);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_BACKEND_URL}/user/${user.id}`)
-          .then((response) => {
-            const userData = response.data;
-            setUserName(userData?.[0]?.nom);
-            setUserFirstname(userData?.[0]?.prenom);
-            setUserMail(userData?.[0]?.email);
-          });
-      } catch {
-        console.error("erreur");
-      }
-    };
+    if (user && user.id) {
+      const fetchUser = async () => {
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_BACKEND_URL}/user/${user.id}`)
+            .then((response) => {
+              const userData = response.data;
+              setUserName(userData?.[0]?.nom);
+              setUserFirstname(userData?.[0]?.prenom);
+              setUserMail(userData?.[0]?.email);
+              setPhoto(userData?.[0]?.photoProfil);
+            });
+        } catch {
+          console.error("erreur");
+        }
+      };
 
-    fetchUser();
+      fetchUser();
+    }
   }, [user]);
 
   const handleSubmit = () => {
@@ -63,7 +66,7 @@ function UserAccount() {
             const modifiedUser = {
               id: userId,
               nom: userName,
-              preno: userFirstname,
+              prenom: userFirstname,
               email: userMail,
               photoProfil: photo,
             };

@@ -9,17 +9,19 @@ function EditPhotoUser({ editMode, photo, setPhoto }) {
   // on récupère les informations utilisateurs
   const { user, setUser } = useContext(UserContext);
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_BACKEND_URL}/user/${user && user.id}`)
-          .then((res) => setUser(res.data[0]));
-      } catch {
-        console.error("Error getting user");
-      }
-    };
-    fetchUser();
-  }, []);
+    if (user && user.id) {
+      const fetchUser = async () => {
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_BACKEND_URL}/user/${user.id}`)
+            .then((res) => setUser(res.data[0]));
+        } catch {
+          console.error("Error getting user");
+        }
+      };
+      fetchUser();
+    }
+  }, [user]);
 
   // fonction qui upload le changement d'image
   const handleFileChange = async (event) => {
