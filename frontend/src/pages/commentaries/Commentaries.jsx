@@ -126,7 +126,11 @@ function Commentaries({ comms, setComms, ideeId }) {
                   <div className="rounded-full h-[80px] w-[80px]">
                     <img
                       className="w-full h-full border border-solid border-slate-300 rounded-full object-cover"
-                      src={el.photoProfil}
+                      src={
+            el.photoProfil.startsWith("http")
+              ? el.photoProfil
+              : `${import.meta.env.VITE_BACKEND_URL}${el.photoProfil}`
+          }
                       alt=""
                     />
                   </div>

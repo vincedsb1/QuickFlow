@@ -62,7 +62,11 @@ function CardOrga({ name, logo, id, setPopUp, setorgaId }) {
         </div>
         <div className="border border-solid border-slate-300 rounded-full h-[152px] w-[152px] bg-white ">
           <img
-            src={logo}
+            src={
+            logo.startsWith("http")
+              ? logo
+              : `${import.meta.env.VITE_BACKEND_URL}${logo}`
+          }
             alt={name}
             className="h-full w-full rounded-full object-cover"
           />

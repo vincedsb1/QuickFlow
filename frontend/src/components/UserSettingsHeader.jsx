@@ -15,11 +15,15 @@ function UserSettingsHeader({ userFirstname, userName }) {
       className="md:ml-32 ml-6 flex flex-row items-center"
     >
       <div id="headerSettingsUserPhotoContainer" className="min-w-20 w-20">
-        <img
-          src={user.photoProfil}
-          alt="PP"
-          className="h-20 w-20 rounded-full object-cover"
-        />
+      <img
+        src={
+          user.photoProfil.startsWith("http")
+            ? user.photoProfil
+            : `${import.meta.env.VITE_BACKEND_URL}${user.photoProfil}`
+        }
+        className="max-h-20 max-w-20  h-20 p-4"
+        alt="data"
+      />
       </div>
       <div id="headerSettingsUserInfosContainer" className="ml-8">
         <div id="headerSettingsUserName" />

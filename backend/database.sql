@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `quickflow_db`.`user` (
   `nom` VARCHAR(255) NOT NULL,
   `prenom` VARCHAR(255) NOT NULL,
   `hashedPassword` VARCHAR(255) NOT NULL,
-  `photoProfil` VARCHAR(255) DEFAULT "http://localhost:5026/AvatarPlaceHolder.png" NULL,
+  `photoProfil` VARCHAR(255) DEFAULT "/AvatarPlaceHolder.png" NULL,
   `email` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;

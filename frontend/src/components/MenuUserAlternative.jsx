@@ -39,7 +39,11 @@ function MenuUserAlternative() {
         className="flex items-center justify-end flex-row gap-3 relative"
       >
         <img
-          src={user && user.photoProfil}
+          src={
+            user && user.photoProfil.startsWith("http")
+              ? user.photoProfil
+              : `${import.meta.env.VITE_BACKEND_URL}${user && user.photoProfil}`
+          }
           alt=""
           className="w-10 h-10 object-cover rounded-full"
         />

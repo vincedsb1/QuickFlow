@@ -132,7 +132,11 @@ Récupération des commentaires
                 className="hidden md:block w-2/5 p-8  flex justify-center items-center"
               >
                 <img
-                  src={imageData?.[0]?.lien}
+                  src={
+              imageData?.[0]?.lien.startsWith("http")
+                ? imageData?.[0]?.lien
+                : `${import.meta.env.VITE_BACKEND_URL}${imageData?.[0]?.lien}`
+            }
                   alt="IdeaPicture"
                   className="max-w-72 max-h-52 md:rounded-md"
                 />
@@ -174,7 +178,13 @@ Récupération des commentaires
                 >
                   <div id="HeaderUserPhoto" className="p-4">
                     <img
-                      src={user && user.photoProfil}
+                      src={
+                user && user.photoProfil.startsWith("http")
+                  ? user.photoProfil
+                  : `${import.meta.env.VITE_BACKEND_URL}${
+                      user && user.photoProfil
+                    }`
+              }
                       alt="Secondary "
                       className="rounded-full w-[54px] h-[54px] object-cover"
                     />
@@ -225,7 +235,11 @@ Récupération des commentaires
               className="flex justify-center items-center "
             >
               <img
-                src={imageData?.[0]?.lien}
+                src={
+              imageData?.[0]?.lien.startsWith("http")
+                ? imageData?.[0]?.lien
+                : `${import.meta.env.VITE_BACKEND_URL}${imageData?.[0]?.lien}`
+            }
                 alt="IdeaPicture"
                 className="md:rounded-md object-contain w-full max-h-80"
               />
