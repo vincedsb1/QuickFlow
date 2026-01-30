@@ -1,54 +1,100 @@
-## Concept
+<div align="center">
+  <img src="frontend/public/assets/images/quickflo_cover.jpg" alt="QuickFlow Cover" width="100%" />
+  
+  <h3>QuickFlow</h3>
+  
+  <p>
+    A collaborative decision-making platform designed to streamline organizational proposals, voting, and consensus building.
+  </p>
+</div>
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+<div align="center">
+  <img src="frontend/public/assets/images/quickflow_screenshot.png" alt="QuickFlow Interface" width="100%" />
+</div>
 
-## Setup & Use
+<br />
 
-### Windows users
+## ✨ Core Features
 
-Be sure to run these commands in a git terminal to avoid [issues with newline formats](https://en.wikipedia.org/wiki/Newline#Issues_with_different_newline_formats):
+*   **Collaborative Idea Management**: Users can submit, edit, and track the lifecycle of ideas and proposals within their organization.
+*   **Advanced Voting System**: Weighted voting mechanisms and real-time status tracking (Open, Accepted, Refused) to democratize decision-making.
+*   **Organization Hubs**: Create or join dedicated organization spaces to compartmentalize workflows and teams.
+*   **Role-Based Access Control**: Granular permissions for Administrators, Decision-makers, and Standard Users to ensure secure management.
+*   **Interactive Discussions**: dedicated comment sections on every proposal to foster debate and refinement before voting.
 
+## 🛠️ Tech Stack
+
+*   **Frontend**: [React](https://react.dev/) (Vite)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **Backend**: [Node.js](https://nodejs.org/) & [Express.js](https://expressjs.com/)
+*   **Database**: [MySQL](https://www.mysql.com/)
+*   **Authentication**: [JSON Web Tokens](https://jwt.io/) & Argon2
+
+## 🚀 Getting Started
+
+Follow these steps to get the project up and running locally in less than 5 minutes.
+
+### Prerequisites
+
+*   [Node.js](https://nodejs.org/) (v18+ recommended)
+*   [MySQL](https://dev.mysql.com/downloads/installer/) (Server running locally)
+
+### 1. Installation
+
+Clone the repository and install dependencies for both the frontend and backend.
+
+```bash
+git clone https://github.com/VincentDesbrosses/QuickFlow.git
+cd QuickFlow
+npm install
 ```
-git config --global core.eol lf
-git config --global core.autocrlf false
+
+### 2. Environment Variables
+
+You need to configure the environment variables for both the backend and frontend.
+
+**⚠️ Important**: Create these files locally. Do not commit them to version control.
+
+**Backend** (`backend/.env`)
+Create this file based on `backend/.env.sample`:
+
+```env
+APP_PORT=5026
+FRONTEND_URL=http://localhost:5173
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=YOUR_DB_USER
+DB_PASSWORD=YOUR_DB_PASSWORD
+DB_NAME=quickflow_db
 ```
 
-### Project Initialization
+**Frontend** (`frontend/.env`)
+Create this file based on `frontend/.env.sample`:
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
-- Clone this repo, enter it
-- If you are using `yarn` or `pnpm`, adapt the `config/cli` in `package.json`
-- Run command `npm install`
-- _NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in `backend/.env.sample`_
+```env
+# URL of your local backend server
+VITE_BACKEND_URL=http://localhost:5026
+```
 
-### Available Commands
+### 3. Database Setup
 
-- `migrate` : Run the database migration script
-- `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
-- `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
-- `fix` : Fixes linter errors (run it if `lint` growls on your code !)
+Initialize the database schema and seed initial data using the migration script.
 
-## FAQ
+```bash
+npm run migrate
+```
 
-### Tools
+### 4. Run the Development Server
 
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
-- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
-- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
-- _Nodemon_ : Allows to restart the server everytime a .js file is udated
+Start both the frontend and backend servers concurrently.
 
-### Deployment
+```bash
+npm run dev
+```
 
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
+*   **Frontend**: [http://localhost:5173](http://localhost:5173)
+*   **Backend**: [http://localhost:5026](http://localhost:5026)
 
-- CAPROVER_BACK_APPNAME : name app on caprover
-- CAPROVER_FRONT_APPNAME : name app on caprover
-- CAPROVER_PASSWORD : password caprover
-- CAPROVER_SERVER : link of domain
-# QuickFlow
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
