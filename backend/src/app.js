@@ -34,7 +34,7 @@ const allowedOrigins = [
   "http://5.250.176.153:80",
   "http://5.250.176.153", // URL de production ou autre environnement
   "https://5.250.176.153", // Si vous avez également une version sécurisée
-  // TODO: Add your Vercel frontend URL here once deployed (e.g. https://quickflow.vercel.app)
+  "https://quickflow-gef46clkz-vincedsbs-projects.vercel.app",
 ];
 
 // Configuration CORS avec fonction de filtrage dynamique des origines
